@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.io.Serializable;
 
-@Entity // comentado porq causa error al correr el proyecto
+//@Entity // comentado porq causa error al correr el proyecto
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

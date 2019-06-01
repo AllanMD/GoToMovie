@@ -16,7 +16,7 @@ public class Movie {
 
     private Integer id;
     private String title;
-    private Integer year;
+    //private Integer year; // sacado para probar
     //private Genre genre;
 
 
@@ -25,7 +25,6 @@ public class Movie {
         return "Movie{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", year=" + year +
                 '}';
     }
 }
