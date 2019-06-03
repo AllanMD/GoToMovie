@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Entity // comentado porq causa error el correr el proyecto
+@Entity // comentado porq causa error el correr el proyecto
 @NoArgsConstructor
 @AllArgsConstructor
 @Data

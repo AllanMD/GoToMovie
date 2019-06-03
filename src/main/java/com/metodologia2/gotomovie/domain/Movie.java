@@ -8,12 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-//@Entity // comentado porq causa error al correr el proyecto
+@Entity // comentado porq causa error al correr el proyecto
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class Movie {
 
+    @Id
+    @GeneratedValue
     private Integer id;
     private String title;
     //private Integer year; // sacado para probar
