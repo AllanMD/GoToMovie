@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/movie")
@@ -19,7 +20,7 @@ public class MovieController {
     MovieRepository movieRepository;
     MovieService movieService;
 
-    @GetMapping
+    @GetMapping("")
     public Movie getMovie(){
         return new Movie();
     }
@@ -30,8 +31,14 @@ public class MovieController {
         return m;
     }
 
-    @PostMapping
+    @PostMapping("")
     public Movie addMovie(@RequestBody Movie movie){
         return movieRepository.save(movie);
+    }
+
+    @GetMapping("/api")
+    public Movie getMovieApi() {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject("https://api.themoviedb.org/3/movie/329996?api_key=8d7db92be0746d3da167842d227f2f64&language=en-US", Movie.class);
     }
 }

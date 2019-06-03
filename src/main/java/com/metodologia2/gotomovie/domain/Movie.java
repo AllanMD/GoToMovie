@@ -17,7 +17,7 @@ public class Movie {
     @Id
     @GeneratedValue
     private Integer id;
-    private String title;
+    private String original_title;
     //private Integer year; // sacado para probar
     //private Genre genre;
 
@@ -26,7 +26,7 @@ public class Movie {
     public String toString() {
         return "Movie{" +
                 "id=" + id +
-                ", title='" + title + '\'' +
+                ", title='" + original_title + '\'' +
                 '}';
     }
 }
