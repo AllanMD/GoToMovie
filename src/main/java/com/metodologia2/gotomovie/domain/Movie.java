@@ -15,10 +15,10 @@ import javax.persistence.Id;
 public class Movie {
 
     @Id
-    @GeneratedValue
     private Integer id;
-    private String original_title;
-    //private Integer year; // sacado para probar
+    private String title;
+    private String release_date;
+    private String poster_path; // movie poster // se agrega despues de:" https://image.tmdb.org/t/p/w300_and_h450_bestv2 " para ver la imagen
     //private Genre genre;
 
 
@@ -26,7 +26,7 @@ public class Movie {
     public String toString() {
         return "Movie{" +
                 "id=" + id +
-                ", title='" + original_title + '\'' +
+                ", title='" + title + '\'' +
                 '}';
     }
 }
