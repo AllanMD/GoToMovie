@@ -8,14 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity // comentado porq causa error el correr el proyecto
-@NoArgsConstructor
-@AllArgsConstructor
+@Entity
 @Data
-public class Genre {
-    @Id
-    @GeneratedValue
-    private Integer id;
-    private String name;
+@AllArgsConstructor
+@NoArgsConstructor
+public class User {
 
+    @Id @GeneratedValue
+    private int id;
+    private String name;
+    private String last_name;
+    private String userName;
+    private String password;
 }

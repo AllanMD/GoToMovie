@@ -5,8 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Entity // comentado porq causa error al correr el proyecto
 @NoArgsConstructor
@@ -19,7 +20,8 @@ public class Movie {
     private String title;
     private String release_date;
     private String poster_path; // movie poster // se agrega despues de:" https://image.tmdb.org/t/p/w300_and_h450_bestv2 " para ver la imagen
-    //private Genre genre;
+    @ManyToMany
+    private List<Genre> genres;
 
 
     @Override

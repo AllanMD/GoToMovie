@@ -29,7 +29,7 @@ public class MovieController {
         return new Movie();
     }
 
-    @GetMapping("/{title}")
+    @GetMapping("search/{title}")
     public SearchResults getMoviesByTitle(@PathVariable String title) {
         RestTemplate restTemplate = new RestTemplate();
         SearchResults searchResults = movieService.getMoviesByTitle(title);
@@ -41,9 +41,9 @@ public class MovieController {
         return movieRepository.save(movie);
     }
 
-    @GetMapping("/api")
-    public Movie getMovieById() {
+    @GetMapping("/{id}")
+    public Movie getMovieById(@PathVariable int id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject("https://api.themoviedb.org/3/movie/329996?api_key=8d7db92be0746d3da167842d227f2f64&language=en-US", Movie.class);
+        return restTemplate.getForObject("https://api.themoviedb.org/3/movie/"+id+"?api_key=8d7db92be0746d3da167842d227f2f64&language=en-US", Movie.class);
     }
 }
