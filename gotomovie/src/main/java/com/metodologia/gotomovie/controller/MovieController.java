@@ -1,9 +1,9 @@
-package com.metodologia2.gotomovie.controller;
+package com.metodologia.gotomovie.controller;
 
-import com.metodologia2.gotomovie.Service.MovieService;
-import com.metodologia2.gotomovie.domain.Movie;
-import com.metodologia2.gotomovie.domain.SearchResults;
-import com.metodologia2.gotomovie.repository.MovieRepository;
+import com.metodologia.gotomovie.domain.Movie;
+import com.metodologia.gotomovie.domain.SearchResults;
+import com.metodologia.gotomovie.repository.MovieRepository;
+import com.metodologia.gotomovie.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,9 +51,12 @@ public class MovieController {
     @GetMapping("/prueba")
     public ModelAndView metodoPrueba() {
         ModelAndView model = new ModelAndView();
-        model.addObject("nombre", "Federico Elias");
-        model.addObject("apellido", "Eliasss");
+        String nombre = "Federico";
+        String apellido = "Elias";
+        model.addObject("nombre", nombre);
+        model.addObject("apellido", apellido);
         model.setViewName("index");
         return model;
     }
 }
+
