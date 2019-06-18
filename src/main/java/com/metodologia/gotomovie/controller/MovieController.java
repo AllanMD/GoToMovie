@@ -48,14 +48,14 @@ public class MovieController {
         return restTemplate.getForObject("https://api.themoviedb.org/3/movie/"+id+"?api_key=8d7db92be0746d3da167842d227f2f64&language=en-US", Movie.class);
     }
 
-    @GetMapping("/prueba")
-    public ModelAndView metodoPrueba() {
+
+    @PostMapping("/buscar")
+    public ModelAndView buscar(Movie movie) {
+        movie = this.getMovieById(movie.getId());
+        System.out.println(movie.toString());
         ModelAndView model = new ModelAndView();
-        String nombre = "Federico";
-        String apellido = "Elias";
-        model.addObject("nombre", nombre);
-        model.addObject("apellido", apellido);
-        model.setViewName("index");
+        model.addObject("movie",movie);
+        model.setViewName("movie");
         return model;
     }
 }
