@@ -35,15 +35,6 @@ public class ActorController {
         actorService.addActor(actor);
     }
 
-    @GetMapping("/getAll")
-    public ModelAndView getAll() {
-        List<Actor> actors = actorService.getAll();
-        ModelAndView model = new ModelAndView();
-        model.addObject("actors",actors);
-        model.setViewName("actor");
-        return model;
-    }
-
     @PostMapping("/delete")
     public void delete(@PathVariable Integer id) {
 
