@@ -19,6 +19,13 @@ public class ViewController {
         ModelAndView model = new ModelAndView();
         model.addObject("movie", new Movie());
         model.setViewName("home2"); // cambiar a home comun despues //home 2 es para probar y si funciona bien pasa a ser home
+        return model
+    }
+
+    @GetMapping("template")
+    public ModelAndView templateView() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("template");
         return model;
     }
 
