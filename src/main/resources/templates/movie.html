@@ -15,16 +15,17 @@
 <div>
     <table class="table">
         <thead>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-        </tr>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+            </tr>
         </thead>
         <tbody>
-        <tr>
-            <td th:text="${movie.getId()}"></td>
-            <td th:text="${movie.getTitle()}"></td>
-        </tr>
+            <tr th:each="movie : ${movies}">
+                <td th:text="${movie.getId()}"></td>
+                <td th:text="${movie.getTitle()}"></td>
+                <td><img th:src="${movie.getPosterUrl()} + ${movie.getPoster_path()}" /></td>
+            </tr>
         </tbody>
     </table>
 </div>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // movie api: https://developers.themoviedb.org/3/getting-started/introduction
@@ -31,10 +32,31 @@ public class MovieController {
     }
 
     @GetMapping("search/{title}")
-    public SearchResults getMoviesByTitle(@PathVariable String title) {
+    public ModelAndView getMoviesByTitle(@PathVariable String title) {
         RestTemplate restTemplate = new RestTemplate();
         SearchResults searchResults = movieService.getMoviesByTitle(title);
-        return searchResults;
+        List<Movie> movies = new ArrayList<Movie>();
+        searchResults.getResults().forEach(movie -> {
+            movies.add(movie);
+        });
+        ModelAndView model = new ModelAndView();
+        model.addObject("movies", movies);
+        model.setViewName("movie");
+        return model;
+    }
+
+    @PostMapping("/search2")
+    public ModelAndView getMoviesByTitle2(Movie movieAux) {
+        RestTemplate restTemplate = new RestTemplate();
+        SearchResults searchResults = movieService.getMoviesByTitle(movieAux.getTitle());
+        List<Movie> movies = new ArrayList<Movie>();
+        searchResults.getResults().forEach(movie -> {
+            movies.add(movie);
+        });
+        ModelAndView model = new ModelAndView();
+        model.addObject("movies", movies);
+        model.setViewName("movie");
+        return model;
     }
 
     @PostMapping("")

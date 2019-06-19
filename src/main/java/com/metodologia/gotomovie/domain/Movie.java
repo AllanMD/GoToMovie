@@ -20,9 +20,9 @@ public class Movie {
     private String title;
     private String release_date;
     private String poster_path; // movie poster // se agrega despues de:" https://image.tmdb.org/t/p/w300_and_h450_bestv2 " para ver la imagen
+    private String posterUrl = "https://image.tmdb.org/t/p/w300_and_h450_bestv2";
     @ManyToMany
     private List<Genre> genres;
-
 
     @Override
     public String toString() {
