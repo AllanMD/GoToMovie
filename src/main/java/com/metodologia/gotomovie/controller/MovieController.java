@@ -55,6 +55,7 @@ public class MovieController {
         });
         ModelAndView model = new ModelAndView();
         model.addObject("movies", movies);
+        model.addObject("movie", new Movie());
         model.setViewName("movie");
         return model;
     }
