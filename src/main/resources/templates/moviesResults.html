@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <link th:href="@{/img/favicon.png}" rel="icon">
+    <link th:href="@{/img/apple-touch-icon.png}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link th:href="@{/lib/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link th:href="@{/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/ionicons/css/ionicons.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{/lib/lightbox/css/lightbox.min.css}" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+    <!-- Fontawesome (iconos)-->
+    <script src="https://kit.fontawesome.com/600ca15ca8.js"></script>
+
+    <!-- search bar-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- =======================================================
+      Theme Name: BizPage
+      Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
+      Author: BootstrapMade.com
+      License: https://bootstrapmade.com/license/
+    ======================================================= -->
+    <title>GoToMovie</title>
+</head>
+<body>
+
+<header id="header" class="header-scrolled">
+    <div class="container-fluid">
+
+        <div id="logo" class="pull-left">
+            <h1><a th:href="@{'/'}" class="scrollto">GoToMovie</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+        </div>
+
+        <nav id="nav-menu-container">
+            <ul class="nav-menu">
+                <li class="menu-active"><a href="#intro">Inicio</a></li>
+
+                <li class="menu-has-children"><a href="">Drop Down</a>
+                    <ul>
+                        <li><a href="#">Drop Down 1</a></li>
+                        <li><a href="#">Drop Down 3</a></li>
+                        <li><a href="#">Drop Down 4</a></li>
+                        <li><a href="#">Drop Down 5</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact">Contact</a></li>
+
+                <!-- Search form -->
+
+                <li>
+                    <form class="form-inline" role="search" th:action="@{/movie/search2}" th:object="${movie}" method="get">
+                        <div class="input-group add-on">
+                            <input class="form-control form-control-sm" placeholder="Buscar pelicula" type="text" th:field="*{title}" th:value="*{title}" />
+                            <div class="input-group-btn">
+                                <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+
+            </ul>
+        </nav><!-- #nav-menu-container -->
+    </div>
+</header><!-- #header -->
+
+<div class="menuContainer"> </div>
+
+<!--<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="movie : ${movies}">
+                <td th:text="${movie.getId()}"></td>
+                <td th:text="${movie.getTitle()}"></td>
+                <td><img th:src="${movie.getPosterUrl()} + ${movie.getPoster_path()}" /></td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
+
+<br> <br> <!-- momentaneo hasta solucionar lo del header-->
+
+<section id="portfolio"  class="section-bg" >
+    <div class="container">
+
+        <header class="section-header">
+            <h3 class="section-title">Resultados para: (nombre-pelicula)</h3>
+        </header>
+
+        <hr>
+
+        <div class="row portfolio-container">
+
+            <div class="col-lg-3 col-md-6 portfolio-item filter-app wow fadeInUp" th:each="movie : ${movies}">
+                <div class="portfolio-wrap">
+                    <figure>
+                        <a th:href="@{'/movie/searchById/' + ${movie.getId()}}"><img th:src="${movie.getPosterUrl()} + ${movie.getPoster_path()}" class="img-fluid" alt="" href=""></a>
+                    </figure>
+
+                    <div class="portfolio-info">
+                        <strong th:text="${movie.getTitle()}"><a  href="#" ></a></strong> <!-- para que el link funcione, hay q poner el text adentro del <a> pero al meterlo, las letras se vuelven azules, solo usando h4 las letras son negras
+                            <!--<p>App</p>-->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</section><!-- #portfolio -->
+
+<!-- JavaScript Libraries -->
+<script th:src="@{/lib/jquery/jquery.min.js}"></script>
+<script th:src="@{/lib/jquery/jquery-migrate.min.js}"></script>
+<script th:src="@{/lib/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/lib/easing/easing.min.js}"></script>
+<script th:src="@{/lib/superfish/hoverIntent.js}"></script>
+<script th:src="@{/lib/superfish/superfish.min.js}"></script>
+<script th:src="@{/lib/wow/wow.min.js}"></script>
+<script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+<script th:src="@{/lib/isotope/isotope.pkgd.min.js}"></script>
+<script th:src="@{/lib/lightbox/js/lightbox.min.js}"></script>
+<script th:src="@{/lib/touchSwipe/jquery.touchSwipe.min.js}"></script>
+<!-- Contact Form JavaScript File -->
+<script th:src="@{contactform/contactform.js}"></script> <!-- sacarlo porq es del foormulario premium-->
+
+<!-- Template Main Javascript File -->
+<script th:src="@{/js/main.js}"></script>
+</body>
+
+<script>
+    $(document).ready(function() {
+       $('.menuContainer').load('/header.html');
+    });
+</script>
+</html>

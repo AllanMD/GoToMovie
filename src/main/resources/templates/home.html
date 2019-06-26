@@ -47,11 +47,11 @@
 <!--==========================
     Header
   ============================-->
-<header id="header">
+<header id="header" class="header-scrolled">
     <div class="container-fluid">
 
         <div id="logo" class="pull-left">
-            <h1><a href="#intro" class="scrollto">GoToMovie</a></h1>
+            <h1><a th:href="@{'/'}" class="scrollto">GoToMovie</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
         </div>
@@ -73,7 +73,7 @@
                 <!-- Search form -->
 
                 <li>
-                    <form class="form-inline" role="search" th:action="@{/movie/search2}" th:object="${movie}" method="post">
+                    <form class="form-inline" role="search" th:action="@{/movie/search2}" th:object="${movie}" method="get">
                         <div class="input-group add-on">
                             <input class="form-control form-control-sm" placeholder="Buscar pelicula" type="text" th:field="*{title}" th:value="*{title}" />
                             <div class="input-group-btn">
@@ -92,6 +92,8 @@
     <!--==========================
       Portfolio Section
     ============================-->
+    <br> <br> <!-- momentaneo hasta solucionar lo del header-->
+
     <section id="portfolio"  class="section-bg" >
         <div class="container">
 
@@ -99,153 +101,23 @@
                 <h3 class="section-title">Peliculas destacadas</h3>
             </header>
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul id="portfolio-flters">
-                        <li data-filter="*" class="filter-active">All</li>
-                        <li data-filter=".filter-app">App</li>
-                        <li data-filter=".filter-card">Card</li>
-                        <li data-filter=".filter-web">Web</li>
-                    </ul>
-                </div>
-            </div>
+            <hr>
 
             <div class="row portfolio-container">
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
+                <div class="col-lg-3 col-md-6 portfolio-item filter-app wow fadeInUp" th:each="movie : ${popularMovies}">
                     <div class="portfolio-wrap">
                         <figure>
-                            <img src="img/portfolio/app1.jpg" class="img-fluid" alt="">
-                            <a href="img/portfolio/app1.jpg" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                            <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                            <a th:href="@{'/movie/searchById/' + ${movie.getId()}}"><img th:src="${movie.getPosterUrl()} + ${movie.getPoster_path()}" class="img-fluid" alt="" href=""></a>
                         </figure>
 
                         <div class="portfolio-info">
-                            <h4><a href="#">App 1</a></h4>
-                            <p>App</p>
+                            <strong th:text="${movie.getTitle()}"><a  href="#" ></a></strong> <!-- para que el link funcione, hay q poner el text adentro del <a> pero al meterlo, las letras se vuelven azules, solo usando h4 las letras son negras
+                            <!--<p>App</p>-->
                         </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="portfolio-wrap">
-                        <figure>
-                            <img src="img/portfolio/web3.jpg" class="img-fluid" alt="">
-                            <a href="img/portfolio/web3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
-                            <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                        </figure>
-
-                        <div class="portfolio-info">
-                            <h4><a href="#">Web 3</a></h4>
-                            <p>Web</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="portfolio-wrap">
-                        <figure>
-                            <img src="img/portfolio/app2.jpg" class="img-fluid" alt="">
-                            <a href="img/portfolio/app2.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 2" title="Preview"><i class="ion ion-eye"></i></a>
-                            <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                        </figure>
-
-                        <div class="portfolio-info">
-                            <h4><a href="#">App 2</a></h4>
-                            <p>App</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-                    <div class="portfolio-wrap">
-                        <figure>
-                            <img src="img/portfolio/card2.jpg" class="img-fluid" alt="">
-                            <a href="img/portfolio/card2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
-                            <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                        </figure>
-
-                        <div class="portfolio-info">
-                            <h4><a href="#">Card 2</a></h4>
-                            <p>Card</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="portfolio-wrap">
-                        <figure>
-                            <img src="img/portfolio/web2.jpg" class="img-fluid" alt="">
-                            <a href="img/portfolio/web2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
-                            <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                        </figure>
-
-                        <div class="portfolio-info">
-                            <h4><a href="#">Web 2</a></h4>
-                            <p>Web</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="portfolio-wrap">
-                        <figure>
-                            <img src="img/portfolio/app3.jpg" class="img-fluid" alt="">
-                            <a href="img/portfolio/app3.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
-                            <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                        </figure>
-
-                        <div class="portfolio-info">
-                            <h4><a href="#">App 3</a></h4>
-                            <p>App</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-                    <div class="portfolio-wrap">
-                        <figure>
-                            <img src="img/portfolio/card1.jpg" class="img-fluid" alt="">
-                            <a href="img/portfolio/card1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 1" title="Preview"><i class="ion ion-eye"></i></a>
-                            <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                        </figure>
-
-                        <div class="portfolio-info">
-                            <h4><a href="#">Card 1</a></h4>
-                            <p>Card</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="portfolio-wrap">
-                        <figure>
-                            <img src="img/portfolio/card3.jpg" class="img-fluid" alt="">
-                            <a href="img/portfolio/card3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 3" title="Preview"><i class="ion ion-eye"></i></a>
-                            <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                        </figure>
-
-                        <div class="portfolio-info">
-                            <h4><a href="#">Card 3</a></h4>
-                            <p>Card</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
-                    <div class="portfolio-wrap">
-                        <figure>
-                            <img src="img/portfolio/web1.jpg" class="img-fluid" alt="">
-                            <a href="img/portfolio/web1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 1" title="Preview"><i class="ion ion-eye"></i></a>
-                            <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-                        </figure>
-
-                        <div class="portfolio-info">
-                            <h4><a href="#">Web 1</a></h4>
-                            <p>Web</p>
-                        </div>
-                    </div>
-                </div>
 
             </div>
 
@@ -275,7 +147,6 @@
 
         </div>
     </section><!-- #clients -->
-
 
 
     <!--==========================

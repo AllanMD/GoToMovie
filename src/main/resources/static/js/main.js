@@ -11,13 +11,13 @@
   });
 
   // Back to top button
-  $(window).scroll(function() {
+  /*$(window).scroll(function() {
     if ($(this).scrollTop() > 100) {
       $('.back-to-top').fadeIn('slow');
     } else {
       $('.back-to-top').fadeOut('slow');
     }
-  });
+  });*/
   $('.back-to-top').click(function(){
     $('html, body').animate({scrollTop : 0},1500, 'easeInOutExpo');
     return false;
@@ -74,18 +74,18 @@
     $("#mobile-nav, #mobile-nav-toggle").hide();
   }
 
-  // Header scroll class
-  $(window).scroll(function() {
+  // Header scroll class /*todas las funciones de "scroll" fueron comentadas para hacer que el header quede fijo en la pagina principal*/
+  /*$(window).scroll(function() {
     if ($(this).scrollTop() > 100) {
       $('#header').addClass('header-scrolled');
     } else {
       $('#header').removeClass('header-scrolled');
     }
-  });
+  });*/
 
-  if ($(window).scrollTop() > 100) {
+  /*if ($(window).scrollTop() > 100) {
     $('#header').addClass('header-scrolled');
-  }
+  } */
 
   // Smooth scroll for the menu and links with .scrollto classes
   $('.nav-menu a, #mobile-nav a, .scrollto').on('click', function() {

@@ -31,7 +31,7 @@ public class MovieController {
         return new Movie();
     }
 
-    @GetMapping("search/{title}")
+    /*@GetMapping("search/{title}")
     public ModelAndView getMoviesByTitle(@PathVariable String title) {
         RestTemplate restTemplate = new RestTemplate();
         SearchResults searchResults = movieService.getMoviesByTitle(title);
@@ -43,21 +43,11 @@ public class MovieController {
         model.addObject("movies", movies);
         model.setViewName("movie");
         return model;
-    }
+    }*/ //borrar ?
 
-    @PostMapping("/search2")
-    public ModelAndView getMoviesByTitle2(Movie movieAux) {
-        RestTemplate restTemplate = new RestTemplate();
-        SearchResults searchResults = movieService.getMoviesByTitle(movieAux.getTitle());
-        List<Movie> movies = new ArrayList<Movie>();
-        searchResults.getResults().forEach(movie -> {
-            movies.add(movie);
-        });
-        ModelAndView model = new ModelAndView();
-        model.addObject("movies", movies);
-        model.addObject("movie", new Movie());
-        model.setViewName("movie");
-        return model;
+    public SearchResults getMoviesByTitle(String title) {
+        SearchResults searchResults = movieService.getMoviesByTitle(title);
+        return searchResults;
     }
 
     @PostMapping("")
@@ -67,10 +57,14 @@ public class MovieController {
 
     @GetMapping("/{id}")
     public Movie getMovieById(@PathVariable int id) {
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject("https://api.themoviedb.org/3/movie/"+id+"?api_key=8d7db92be0746d3da167842d227f2f64&language=en-US", Movie.class);
+        Movie movie = movieService.getMovieById(id);
+        return movie;
     }
 
+    public SearchResults getPopularMovies(){
+        SearchResults results = movieService.getPopularMovies();
+        return results;
+    }
 
     @GetMapping("/searchById/{id}")
     public ModelAndView buscar(@PathVariable int id) {
