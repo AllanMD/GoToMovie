@@ -37,4 +37,12 @@ public class ViewController {
         model.setViewName("actor");
         return model;
     }*/
+
+    @GetMapping("header")
+    public ModelAndView getHeader() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("movie", new Movie());
+        model.setViewName("header.html");
+        return model;
+    }
 }
