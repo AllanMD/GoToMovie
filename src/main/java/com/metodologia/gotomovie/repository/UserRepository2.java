@@ -44,12 +44,4 @@ public class UserRepository2 extends BaseRepository {
         }
         return users;
     }
-
-    public List<User> convertirRsToUser(ResultSet rs) throws SQLException {
-        List<User> users = null;
-        while (rs.next()) {
-            users.add(new User(rs.getInt("id"), rs.getString("name"), rs.getString("lastName"), rs.getString("userName"), rs.getString("password")));
-        }
-        return users;
-    }
 }
