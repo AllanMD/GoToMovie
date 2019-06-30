@@ -19,14 +19,13 @@ public class ExtraMovieRepository extends BaseRepository{
     }
 
     public void addExtraMovie(ExtraMovie extraMovie) {
-        String sql = "insert into movieExtra(id,comentario,userId,puntuacion,movieId) values (?,?,?,?,?)";
+        String sql = "insert into extraMovie(comentario,userId,puntuacion,movieId) values (?,?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1,extraMovie.getId());
-            ps.setString(2,extraMovie.getComentario());
-            ps.setInt(3,extraMovie.getUserId());
-            ps.setDouble(4,extraMovie.getPuntuacion());
-            ps.setInt(5,extraMovie.getMovieId());
+            ps.setString(1,extraMovie.getComentario());
+            ps.setInt(2,extraMovie.getUserId());
+            ps.setDouble(3,extraMovie.getPuntuacion());
+            ps.setInt(4,extraMovie.getMovieId());
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -34,7 +33,7 @@ public class ExtraMovieRepository extends BaseRepository{
     }
 
     public List<ExtraMovie> getAll() {
-        String sql = "select * from movieExtra";
+        String sql = "select * from extraMovie";
         List<ExtraMovie> extraMovies = new ArrayList<ExtraMovie>();
         ExtraMovie extraMovie = null;
         try {

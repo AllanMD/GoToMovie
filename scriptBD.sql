@@ -23,7 +23,7 @@ create table extraMovie(
     id int auto_increment,
     puntuacion double,
     comentario varchar(450),
-    usuarioId int,
+    userId int,
     movieId int,
     constraint pk_movieExtra primary key(id)
 )
