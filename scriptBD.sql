@@ -19,11 +19,11 @@ create table users(
 	constraint unq_userName UNIQUE(userName)
 );
 
-create table extraMovie(
+create table comments(
     id int auto_increment,
-    puntuacion double,
-    comentario varchar(450),
+    comment varchar(450),
     userId int,
     movieId int,
-    constraint pk_movieExtra primary key(id)
+    constraint pk_comment primary key(id)
 )
+-- agregar los constraint fk de user id y movie id

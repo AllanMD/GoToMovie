@@ -155,17 +155,23 @@
 
         </div>
         <hr>
+        <div class="">
+            <h1>Comentarios:</h1>
+            <div th:each="comment : ${comments}">
+                <p th:text="${comment.getComment()}">Comentario</p>
+            </div>
+            <a href="">Ver todos los comentarios >></a>
+        </div>
+
+
         <div class="form">
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
-            <h1>Comentarios:</h1>
-            <p>Comentario 1</p>
-            <p>Comentario 2</p>
-            <a href="">Ver todos los comentarios >></a>
-            <form action="" method="post" role="form" class="contactForm">
 
+            <form th:action="@{'/comment/agregar/'}" method="post" role="form" class="contactForm">
+                <input type="hidden" name="movieId" th:value="${movie.getId()}" >
                 <div class="form-group">
-                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Ingrese un comentario sobre la pelicula"></textarea>
+                    <textarea class="form-control" name="comment" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Ingrese un comentario sobre la pelicula"></textarea>
                     <div class="validation"></div>
                 </div>
                 <div class="text-center"><button type="submit">Enviar comentario</button></div>

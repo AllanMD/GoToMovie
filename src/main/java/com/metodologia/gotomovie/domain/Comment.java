@@ -12,13 +12,12 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExtraMovie {
+public class Comment {
 
     @Id
     @GeneratedValue
     private Integer id;
-    private Double puntuacion;
-    private String comentario;
+    private String comment;
     private Integer userId;
     private Integer movieId;
 }

@@ -1,6 +1,7 @@
 package com.metodologia.gotomovie.controller;
 
 import com.metodologia.gotomovie.domain.Actor;
+import com.metodologia.gotomovie.domain.Comment;
 import com.metodologia.gotomovie.domain.Movie;
 import com.metodologia.gotomovie.domain.SearchResults;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class ViewController {
 
     @Autowired
     MovieController movieController;
+
+    @Autowired
+    CommentController commentController;
 
 
     @GetMapping({"/home",  "/", ""})
@@ -50,12 +54,25 @@ public class ViewController {
         return model;
     }
 
+    @GetMapping("movie/searchById/{id}")
+    public ModelAndView searchById(@PathVariable int id) {
+        Movie movie = movieController.getMovieById(id);
+        List<Comment> comments = commentController.getLatestCommentsByMovieId(id);
+        System.out.println(movie.toString());
+        ModelAndView model = new ModelAndView();
+        model.addObject("movie",movie);
+        model.addObject("comments", comments);
+        model.setViewName("movie-single");
+        return model;
+    }
+
     @GetMapping("template")
     public ModelAndView templateView() {
         ModelAndView model = new ModelAndView();
         model.setViewName("template");
         return model;
     }
+
 
     /*@GetMapping("/getAll")
     public ModelAndView getAll() {

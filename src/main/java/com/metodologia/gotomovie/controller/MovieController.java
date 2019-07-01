@@ -66,15 +66,6 @@ public class MovieController {
         return results;
     }
 
-    @GetMapping("/searchById/{id}")
-    public ModelAndView buscar(@PathVariable int id) {
-        System.out.println(id);
-        Movie movie = this.getMovieById(id);
-        System.out.println(movie.toString());
-        ModelAndView model = new ModelAndView();
-        model.addObject("movie",movie);
-        model.setViewName("movie-single");
-        return model;
-    }
+
 }
 
