@@ -44,6 +44,9 @@
 </head>
 <body>
 
+<!--==========================
+    Header
+  ============================-->
 <header id="header" class="header-scrolled">
     <div class="container-fluid">
 
@@ -85,56 +88,93 @@
     </div>
 </header><!-- #header -->
 
-<div class="menuContainer"> </div>
-
-<!--<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="movie : ${movies}">
-                <td th:text="${movie.getId()}"></td>
-                <td th:text="${movie.getTitle()}"></td>
-                <td><img th:src="${movie.getPosterUrl()} + ${movie.getPoster_path()}" /></td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
-
 <br> <br> <!-- momentaneo hasta solucionar lo del header-->
 
-<section id="portfolio"  class="section-bg" >
+<!--==========================
+   Contact Section
+ ============================-->
+<section id="contact" class="section-bg wow fadeInUp">
     <div class="container">
 
-        <header class="section-header">
-            <h3 class="section-title">Resultados para: (nombre-pelicula)</h3>
-        </header>
+        <div class="section-header">
+            <h3 th:text="${movie.getTitle()}"></h3>
+        </div>
 
-        <hr>
+        <div class="row contact-info">
 
-        <div class="row portfolio-container">
-
-            <div class="col-lg-3 col-md-6 portfolio-item filter-app wow fadeInUp" th:each="movie : ${movies}">
-                <div class="portfolio-wrap">
-                    <figure>
-                        <a th:href="@{'/movie/searchById/' + ${movie.getId()}}"><img th:src="${movie.getPosterUrl()} + ${movie.getPoster_path()}" class="img-fluid" alt="" href=""></a>
-                    </figure>
-
-                    <div class="portfolio-info">
-                        <a th:href="@{'/movie/searchById/' + ${movie.getId()}}"><strong th:text="${movie.getTitle()}"></strong></a>                            <!--<p>App</p>-->
-                    </div>
+            <div class="col-md-4">
+                <div class="contact-address">
+                    <img th:src="${movie.getPosterUrl()} + ${movie.getPoster_path()}" />
                 </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="">
+                    <h3>Año de lanzamiento</h3>
+                    <p th:text="${movie.getRelease_date()}"></p>
+                </div>
+
+                <div class="">
+                    <h3>Genero</h3>
+                    <p th:text="${movie.getGenres()}"></p>
+                </div>
+
+                <div class="">
+                    <h3>Actores</h3>
+                    <p th:text="${movie.getRelease_date()}"></p>
+                </div>
+
+                <div class="">
+                    <h3>Puntuacion </h3>
+                    <h4>10 / 10 </h4>
+                    <p><a href="mailto:info@example.com">info@example.com</a></p>
+                </div>
+
+
+                <div class="form">
+                        <form action="" method="post" role="form" class="contactForm">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">
+                                <label class="form-check-label" for="inlineRadio1">1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+                                <label class="form-check-label" for="inlineRadio2">2</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3">
+                                <label class="form-check-label" for="inlineRadio3">3</label>
+                            </div>
+
+                            <div class="text-center"><button type="submit">Puntuar</button></div>
+                        </form>
+                </div>
+
             </div>
 
 
         </div>
+        <hr>
+        <div class="form">
+            <div id="sendmessage">Your message has been sent. Thank you!</div>
+            <div id="errormessage"></div>
+            <h1>Comentarios:</h1>
+            <p>Comentario 1</p>
+            <p>Comentario 2</p>
+            <a href="">Ver todos los comentarios >></a>
+            <form action="" method="post" role="form" class="contactForm">
+
+                <div class="form-group">
+                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Ingrese un comentario sobre la pelicula"></textarea>
+                    <div class="validation"></div>
+                </div>
+                <div class="text-center"><button type="submit">Enviar comentario</button></div>
+            </form>
+        </div>
 
     </div>
-</section><!-- #portfolio -->
+</section><!-- #contact -->
+
 
 <!-- JavaScript Libraries -->
 <script th:src="@{/lib/jquery/jquery.min.js}"></script>

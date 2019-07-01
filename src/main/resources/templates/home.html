@@ -112,7 +112,7 @@
                         </figure>
 
                         <div class="portfolio-info">
-                            <strong th:text="${movie.getTitle()}"><a  href="#" ></a></strong> <!-- para que el link funcione, hay q poner el text adentro del <a> pero al meterlo, las letras se vuelven azules, solo usando h4 las letras son negras
+                            <a th:href="@{'/movie/searchById/' + ${movie.getId()}}"><strong th:text="${movie.getTitle()}"></strong></a> <!-- para que el link funcione, hay q poner el text adentro del <a> pero al meterlo, las letras se vuelven azules, solo usando h4 las letras son negras-->
                             <!--<p>App</p>-->
                         </div>
                     </div>

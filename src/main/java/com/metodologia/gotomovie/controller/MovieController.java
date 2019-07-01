@@ -73,7 +73,7 @@ public class MovieController {
         System.out.println(movie.toString());
         ModelAndView model = new ModelAndView();
         model.addObject("movie",movie);
-        model.setViewName("oneMovie");
+        model.setViewName("movie-single");
         return model;
     }
 }
