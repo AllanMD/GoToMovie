@@ -21,4 +21,8 @@ public class UserService {
     public List<User> getAll() {
         return userRepository2.getAll();
     }
+
+    public User verificarUsuario(String userName, String pass) {
+        return userRepository2.getUserByPassword(userName,pass);
+    }
 }

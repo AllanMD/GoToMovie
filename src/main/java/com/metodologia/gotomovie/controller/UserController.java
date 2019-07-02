@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import sun.text.normalizer.NormalizerBase;
 
 import java.util.List;
 
@@ -48,5 +49,21 @@ public class UserController {
         model.setViewName("users");
         return model;
     }
+
+    @PostMapping("/login")
+    public ModelAndView login(@RequestBody User user) {
+        ModelAndView model = new ModelAndView();
+        User verificado = userService.verificarUsuario(user.getUserName(),user.getPassword());
+        if (verificado != null) {
+            //si entra aca es porque la contraseña y el user name son correctos
+            model.setViewName("home");
+        } else {
+            //Si entra aca es porque algun dato es incorrecto
+            model.setViewName("login");
+        }
+
+        return model;
+    }
+
 
 }

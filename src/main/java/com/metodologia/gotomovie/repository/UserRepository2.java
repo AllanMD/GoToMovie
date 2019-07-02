@@ -44,4 +44,21 @@ public class UserRepository2 extends BaseRepository {
         }
         return users;
     }
+
+    public User getUserByPassword(String name, String pass) {
+        String sql = "select * from users where userName = ? and password = ?";
+        try {
+            PreparedStatement stm = connection.prepareStatement(sql);
+            stm.setString(1,name);
+            stm.setString(2,pass);
+            ResultSet resultSet = stm.executeQuery();
+            if(resultSet != null) {
+                return new User(resultSet.getInt("id"),resultSet.getString("name"), resultSet.getString("lastName"),resultSet.getString("userName"),resultSet.getString("password"));
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
