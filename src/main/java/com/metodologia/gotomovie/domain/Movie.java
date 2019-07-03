@@ -23,6 +23,12 @@ public class Movie {
     private String posterUrl = "https://image.tmdb.org/t/p/w300_and_h450_bestv2";
     @ManyToMany
     private List<Genre> genres;
+    @ManyToMany
+    private List<Actor> cast;
+
+    public List<Actor> getCastLimit5(){
+        return cast.subList(0,5); // devuelve los primeros 5 actores de la lista
+    }
 
     @Override
     public String toString() {

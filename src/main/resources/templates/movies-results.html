@@ -55,22 +55,12 @@
 
         <nav id="nav-menu-container">
             <ul class="nav-menu">
-                <li class="menu-active"><a href="#intro">Inicio</a></li>
-
-                <li class="menu-has-children"><a href="">Drop Down</a>
-                    <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
-                        <li><a href="#">Drop Down 5</a></li>
-                    </ul>
-                </li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="menu-active"><a th:href="@{'/'}">Inicio</a></li>
 
                 <!-- Search form -->
 
                 <li>
-                    <form class="form-inline" role="search" th:action="@{/movie/search2}" th:object="${movie}" method="get">
+                    <form class="form-inline" role="search" th:action="@{/movie/search}" th:object="${movie}" method="get">
                         <div class="input-group add-on">
                             <input class="form-control form-control-sm" placeholder="Buscar pelicula" type="text" th:field="*{title}" th:value="*{title}" />
                             <div class="input-group-btn">
@@ -87,31 +77,13 @@
 
 <div class="menuContainer"> </div>
 
-<!--<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="movie : ${movies}">
-                <td th:text="${movie.getId()}"></td>
-                <td th:text="${movie.getTitle()}"></td>
-                <td><img th:src="${movie.getPosterUrl()} + ${movie.getPoster_path()}" /></td>
-            </tr>
-        </tbody>
-    </table>
-</div> -->
-
 <br> <br> <!-- momentaneo hasta solucionar lo del header-->
 
 <section id="portfolio"  class="section-bg" >
     <div class="container">
 
         <header class="section-header">
-            <h3 class="section-title">Resultados para: (nombre-pelicula)</h3>
+            <h3 class="section-title" th:text="'Resultados de busqueda: '"></h3>
         </header>
 
         <hr>

@@ -28,6 +28,9 @@ public class ViewController {
     @Autowired
     CommentController commentController;
 
+    @Autowired
+    ScoreController scoreController;
+
 
     @GetMapping({"/home",  "/", ""})
     public ModelAndView homeView() {
@@ -39,7 +42,7 @@ public class ViewController {
         return model;
     }
 
-    @GetMapping("movie/search2")
+    @GetMapping("movie/search")
     public ModelAndView getMoviesByTitle(String title) {
         RestTemplate restTemplate = new RestTemplate();
         SearchResults searchResults = movieController.getMoviesByTitle(title);
@@ -50,7 +53,7 @@ public class ViewController {
         ModelAndView model = new ModelAndView();
         model.addObject("movies", movies);
         model.addObject("movie", new Movie());
-        model.setViewName("moviesResults");
+        model.setViewName("movies-results");
         return model;
     }
 
@@ -58,10 +61,12 @@ public class ViewController {
     public ModelAndView searchById(@PathVariable int id) {
         Movie movie = movieController.getMovieById(id);
         List<Comment> comments = commentController.getLatestCommentsByMovieId(id);
+        String averageScore = scoreController.getAverageScoreByMovie(id);
         System.out.println(movie.toString());
         ModelAndView model = new ModelAndView();
         model.addObject("movie",movie);
         model.addObject("comments", comments);
+        model.addObject("averageScore",averageScore);
         model.setViewName("movie-single");
         return model;
     }
@@ -73,13 +78,4 @@ public class ViewController {
         return model;
     }
 
-
-    /*@GetMapping("/getAll")
-    public ModelAndView getAll() {
-        List<Actor> actors = actorService.getAll();
-        ModelAndView model = new ModelAndView();
-        model.addObject("actors",actors);
-        model.setViewName("actor");
-        return model;
-    }*/
 }

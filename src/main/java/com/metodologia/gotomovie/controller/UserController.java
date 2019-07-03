@@ -2,14 +2,12 @@ package com.metodologia.gotomovie.controller;
 
 import com.metodologia.gotomovie.domain.User;
 import com.metodologia.gotomovie.repository.UserRepository;
-import com.metodologia.gotomovie.repository.UserRepository2;
 import com.metodologia.gotomovie.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import sun.text.normalizer.NormalizerBase;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController()
@@ -22,8 +20,8 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/signup")
-    public void createUser (@RequestBody User user){
-        userRepository.save(user);
+    public void createUser (@RequestBody User user) throws SQLException {
+        userRepository.addUser(user);
     }
 
     @GetMapping("/users")

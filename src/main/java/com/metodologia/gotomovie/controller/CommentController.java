@@ -25,9 +25,9 @@ public class CommentController {
 
     // @PathVariable is used to tell Spring that part of the URI path is a value you want passed to your method
     // @RequestParam: para datos que vienen de formulario
-    @PostMapping("/agregar")
+    @PostMapping("/add")
     public ModelAndView addComment(@RequestParam int movieId, @RequestParam String comment) {
-        System.out.println("ID: " + movieId + " Comentario: " + comment);
+
         Comment c = new Comment();
         c.setMovieId(movieId);
         c.setComment(comment);

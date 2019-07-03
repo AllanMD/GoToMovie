@@ -58,22 +58,13 @@
 
         <nav id="nav-menu-container">
             <ul class="nav-menu">
-                <li class="menu-active"><a href="#intro">Inicio</a></li>
+                <li class="menu-active"><a th:href="@{'/'}">Inicio</a></li>
 
-                <li class="menu-has-children"><a href="">Drop Down</a>
-                    <ul>
-                        <li><a href="#">Drop Down 1</a></li>
-                        <li><a href="#">Drop Down 3</a></li>
-                        <li><a href="#">Drop Down 4</a></li>
-                        <li><a href="#">Drop Down 5</a></li>
-                    </ul>
-                </li>
-                <li><a href="#contact">Contact</a></li>
 
                 <!-- Search form -->
 
                 <li>
-                    <form class="form-inline" role="search" th:action="@{/movie/search2}" th:object="${movie}" method="get">
+                    <form class="form-inline" role="search" th:action="@{/movie/search}" th:object="${movie}" method="get">
                         <div class="input-group add-on">
                             <input class="form-control form-control-sm" placeholder="Buscar pelicula" type="text" th:field="*{title}" th:value="*{title}" />
                             <div class="input-group-btn">
@@ -110,42 +101,84 @@
 
             <div class="col-md-8">
                 <div class="">
-                    <h3>Año de lanzamiento</h3>
+                    <h3>Fecha de estreno</h3>
                     <p th:text="${movie.getRelease_date()}"></p>
                 </div>
 
                 <div class="">
                     <h3>Genero</h3>
-                    <p th:text="${movie.getGenres()}"></p>
+                    <div th:each="genre : ${movie.getGenres()}">
+                        <p th:text="${genre.getName()}"></p>
+                    </div>
                 </div>
 
                 <div class="">
                     <h3>Actores</h3>
-                    <p th:text="${movie.getRelease_date()}"></p>
+                    <div th:each="actor : ${movie.getCastLimit5()}">
+                        <p th:text="${actor.getName()}"></p>
+                    </div>
                 </div>
 
                 <div class="">
                     <h3>Puntuacion </h3>
-                    <h4>10 / 10 </h4>
-                    <p><a href="mailto:info@example.com">info@example.com</a></p>
+                    <h2 th:text="${averageScore} ">/ 10 </h2> <!-- if puntuacion = 0.0 , "sin puntuar" -->
                 </div>
-
-
+                <hr>
                 <div class="form">
-                        <form action="" method="post" role="form" class="contactForm">
+                        <form th:action="@{'/score/add/'}"method="post" role="form" class="contactForm">
+
+                            <input type="hidden" name="movieId" th:value="${movie.getId()}" >
+
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1">
+                                <input class="form-check-input" type="radio" name="score" id="inlineRadio1" value="1">
                                 <label class="form-check-label" for="inlineRadio1">1</label>
                             </div>
+
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2">
+                                <input class="form-check-input" type="radio" name="score" id="inlineRadio2" value="2">
                                 <label class="form-check-label" for="inlineRadio2">2</label>
                             </div>
+
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3">
+                                <input class="form-check-input" type="radio" name="score" id="inlineRadio3" value="3">
                                 <label class="form-check-label" for="inlineRadio3">3</label>
                             </div>
 
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="score" id="inlineRadio4" value="4">
+                                <label class="form-check-label" for="inlineRadio4">4</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="score" id="inlineRadio5" value="5">
+                                <label class="form-check-label" for="inlineRadio5">5</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="score" id="inlineRadio6" value="6">
+                                <label class="form-check-label" for="inlineRadio6">6</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="score" id="inlineRadio7" value="7">
+                                <label class="form-check-label" for="inlineRadio7">7</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="score" id="inlineRadio8" value="8">
+                                <label class="form-check-label" for="inlineRadio8">8</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="score" id="inlineRadio9" value="9">
+                                <label class="form-check-label" for="inlineRadio9">9</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="score" id="inlineRadio10" value="10">
+                                <label class="form-check-label" for="inlineRadio10">10</label>
+                            </div>
+                            <br> <br>
                             <div class="text-center"><button type="submit">Puntuar</button></div>
                         </form>
                 </div>
@@ -154,21 +187,60 @@
 
 
         </div>
-        <hr>
+        <hr> <!--
         <div class="">
             <h1>Comentarios:</h1>
             <div th:each="comment : ${comments}">
                 <p th:text="${comment.getComment()}">Comentario</p>
             </div>
+
+
+            <div class="row" th:each="comment : ${comments}">
+
+                <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                    <div class="icon"><i class="ion-ios-people-outline"></i></div>
+                    <h4 class="title">Usuario anonimo</h4>
+                    <p class="description" th:text="${comment.getComment()}"></p>
+                </div>
+
+            </div>
+
             <a href="">Ver todos los comentarios >></a>
-        </div>
+        </div> -->
+
+
+        <!--==========================
+      Services Section
+    ============================-->
+        <section id="services">
+            <div class="container">
+
+                <div class="">
+                    <h1>Comentarios:</h1>
+                    <hr>
+                    <div class="row" th:each="comment : ${comments}">
+
+                        <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                            <div class="icon"><i class="ion-ios-contact"></i></div>
+                            <h4 class="title">Usuario anonimo</h4>
+                            <p class="description" th:text="${comment.getComment()}"></p>
+                        </div>
+
+                    </div>
+
+                    <a href="">Ver todos los comentarios >></a>
+                </div>
+
+            </div>
+
+        </section><!-- #services -->
 
 
         <div class="form">
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
 
-            <form th:action="@{'/comment/agregar/'}" method="post" role="form" class="contactForm">
+            <form th:action="@{'/comment/add/'}" method="post" role="form" class="contactForm">
                 <input type="hidden" name="movieId" th:value="${movie.getId()}" >
                 <div class="form-group">
                     <textarea class="form-control" name="comment" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Ingrese un comentario sobre la pelicula"></textarea>

@@ -5,9 +5,6 @@ import com.metodologia.gotomovie.repository.ActorRepository;
 import com.metodologia.gotomovie.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 
 @RestController
@@ -22,12 +19,12 @@ public class ActorController {
 
     @GetMapping
     public Actor getActor(){
-        return new Actor(1,"Federico","ELias");
+        return new Actor(1,"Federico");
     }
 
     @PostMapping
-    public Actor addActor(@RequestBody Actor actor){
-        return actorRepo.save(actor);
+    public void addActor(@RequestBody Actor actor){
+        //return actorRepo.addActor(actor);
     }
 
     @PostMapping("/add")

@@ -1,7 +1,7 @@
 package com.metodologia.gotomovie.service;
 
 import com.metodologia.gotomovie.domain.User;
-import com.metodologia.gotomovie.repository.UserRepository2;
+import com.metodologia.gotomovie.repository.UserRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,17 +12,17 @@ import java.util.List;
 @Data
 public class UserService {
     @Autowired
-    UserRepository2 userRepository2;
+    UserRepository userRepository;
 
     public void addUser(User user) throws Exception {
-        userRepository2.addUser(user);
+        userRepository.addUser(user);
     }
 
     public List<User> getAll() {
-        return userRepository2.getAll();
+        return userRepository.getAll();
     }
 
     public User verificarUsuario(String userName, String pass) {
-        return userRepository2.getUserByPassword(userName,pass);
+        return userRepository.getUserByPassword(userName,pass);
     }
 }

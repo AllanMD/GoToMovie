@@ -27,3 +27,12 @@ create table comments(
     constraint pk_comment primary key(id)
 )
 -- agregar los constraint fk de user id y movie id
+
+create table scores(
+    id int auto_increment,
+    score int,
+    movieId int,
+    constraint pk_scores primary key(id)
+)
+
+-- agregar constraint fk de movieId

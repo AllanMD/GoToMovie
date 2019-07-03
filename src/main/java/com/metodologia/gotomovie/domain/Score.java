@@ -9,14 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class Actor {
+public class Score {
 
     @Id
     @GeneratedValue
     private Integer id;
-    private String name;
-
+    private Integer score;
+    private Integer movieId;
 }
