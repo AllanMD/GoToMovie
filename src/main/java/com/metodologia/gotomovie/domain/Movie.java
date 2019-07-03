@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Entity // comentado porq causa error al correr el proyecto
@@ -28,6 +31,22 @@ public class Movie {
 
     public List<Actor> getCastLimit5(){
         return cast.subList(0,5); // devuelve los primeros 5 actores de la lista
+    }
+
+    public String getRelease_date() {
+        // el que parsea
+        SimpleDateFormat parseador = new SimpleDateFormat("yyyy-MM-dd");
+        // el que formatea
+        SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+
+        Date date = null;
+        try {
+            date = parseador.parse(this.release_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return formateador.format(date);
     }
 
     @Override
